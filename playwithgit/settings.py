@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -119,6 +120,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    # Add the absolute path to the 'core' app's 'static' directory
+    os.path.join(BASE_DIR, 'core', 'static', 'css'),
+    os.path.join(BASE_DIR, 'core', 'static', 'images'),
+    # Add the absolute path to the 'jokes_n_puns' app's 'static' directory
+    # os.path.join(BASE_DIR, 'jokes_n_puns', 'static', 'css'),
+    # os.path.join(BASE_DIR, 'jokes_n_puns', 'static', 'images'),
+]
+
+# Media files (User-uploaded content)
+MEDIA_URL = '/media/'  # The URL that will be used to serve media files
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # The local filesystem path where media files will be stored
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
